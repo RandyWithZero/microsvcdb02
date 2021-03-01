@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: msvcdb02
+  labels:
+    app: msvcdb
+    v: "2"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+        app: msvcdb
+        v: "2"
+  template:
+    metadata:
+      labels:
+        app: msvcdb
+        v: "2"
+    spec:
+      containers:
+        - image: 168.1.9.1/test/microsvcdb02:latest
+          imagePullPolicy: Always
+          name: msvcdb02
+          ports:
+            - containerPort: 9091
+              name: apiport
+
